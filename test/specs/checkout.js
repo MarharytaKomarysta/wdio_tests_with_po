@@ -61,33 +61,12 @@ describe('Checkout checking', () => {
         const costMatch = productCostText.match(/\$([\d.]+)/);
         const totalMatch = totalText.match(/\$([\d.]+)/);
 
-        let tax;
-        let cost;
-        let total;
+        let tax = parseFloat(taxMatch[1]);
+        let cost= parseFloat(costMatch[1]);
+        let total= parseFloat(totalMatch[1]);
 
-        if (taxMatch) {
-            tax = parseFloat(taxMatch[1]);
-
-          } else {
-            console.error('Number not Extracted', taxText);
-          }
-
-          if (costMatch) {
-            cost = parseFloat(costMatch[1]);
-
-          } else {
-            console.error('Number not Extracted', productCostText);
-          }
-
-          if (totalMatch) {
-            total = parseFloat(totalMatch[1]);
-
-          } else {
-            console.error('Number not Extracted', totalText);
-          }
-
-          const expectedTotal = tax + cost;
-          expect(expectedTotal).to.equal(total);
+        const expectedTotal = tax + cost;
+        expect(expectedTotal).to.equal(total);
         
 
 
